@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4eadb">
+<title>Una carta para ti</title>
+<style>
+:root{--paper:#fbf4e8;--ink:#5c4035;--muted:#8b6b59;--line:#d9c4ad;--rose:#a86f68}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at top,#f7e7d6 0,#e8d3bd 70%,#dcc1a8 100%);color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+.paper{position:relative;width:min(100%,560px);padding:clamp(25px,6vw,48px);background:var(--paper);border:1px solid #e2cfb9;box-shadow:0 18px 55px #5b3c2b25}
+.paper:before{content:"";position:absolute;inset:10px;border:1px solid #e6d4c1;pointer-events:none}
+.topline{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-align:center}
+.flower{font-size:27px;text-align:center;color:var(--rose);margin:18px 0 8px}
+h1{font-size:clamp(34px,8vw,48px);font-weight:normal;text-align:center;margin:8px 0 10px;line-height:1.1}
+.subtitle{text-align:center;font-style:italic;color:var(--muted);font-size:15px}
+.rule{height:1px;background:var(--line);width:75%;margin:25px auto}
+.letter{font-size:18px;line-height:1.9;text-align:center;white-space:pre-line;margin:0 auto;max-width:390px}
+.signature{text-align:center;font-style:italic;color:var(--muted);margin-top:23px}
+.music{margin-top:30px;text-align:center}
+.music-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+button{font:inherit;color:#fff;background:var(--ink);border:0;border-radius:2px;padding:13px 20px;cursor:pointer;transition:transform .15s,background .15s}
+button:hover{background:#785345;transform:translateY(-1px)}
+.note{font-family:Arial,sans-serif;font-size:12px;color:var(--muted);line-height:1.6;margin:12px auto 0;max-width:320px}
+#player{margin:18px auto 0;max-width:100%;display:none}
+iframe{width:100%;max-width:400px;height:225px;border:0}
+.footer{text-align:center;font-size:11px;color:#9a7c68;margin-top:29px;letter-spacing:1px}
+@media(max-width:420px){.letter{font-size:17px}.paper{padding:29px 24px}}
+</style>
+</head>
+<body>
+<main class="paper">
+  <div class="topline">Algo hecho especialmente para ti</div>
+  <div class="flower">✿</div>
+  <h1>Para ti</h1>
+  <div class="subtitle">Hay cosas que merecen decirse con calma.</div>
+  <div class="rule"></div>
+  <p class="letter">No siempre encuentro las palabras exactas para explicar lo que significas para mí.
+
+Por eso, hoy quise dejarte estas líneas y una canción que habla un poquito por mí.
+
+Ojalá, al escucharla, puedas sentir todo aquello que a veces no sé cómo decirte.</p>
+  <div class="signature">Con cariño, para ti ♡</div>
+  <section class="music">
+    <div class="music-title">Una canción para acompañar estas palabras</div>
+    <button id="playButton" type="button">♫ Escuchar «Eres»</button>
+    <div id="player" aria-live="polite"></div>
+    <p class="note">Toca el botón para reproducir el video oficial de Café Tacvba.</p>
+  </section>
+  <div class="footer">CON CARIÑO · ♡</div>
+</main>
+<script>
+const button = document.getElementById('playButton');
+const player = document.getElementById('player');
+button.addEventListener('click', () => {
+  if (!player.firstElementChild) {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube-nocookie.com/embed/98Akpf1ph2o?autoplay=1&rel=0';
+    iframe.title = 'Café Tacvba - Eres (Video Oficial)';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    player.appendChild(iframe);
+  }
+  player.style.display = 'block';
+  button.textContent = '♫ «Eres» está lista para escucharse';
+});
+</script>
+</body>
+</html>
